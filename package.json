@@ -1,0 +1,24 @@
+{
+  "name": "slack-one-liner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yktakaha4/slack-one-liner.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yktakaha4/slack-one-liner/issues"
+  },
+  "homepage": "https://github.com/yktakaha4/slack-one-liner#readme",
+  "devDependencies": {
+    "serverless": "^2.33.1",
+    "serverless-python-requirements": "^5.1.1"
+  }
+}

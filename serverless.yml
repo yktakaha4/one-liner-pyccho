@@ -1,0 +1,17 @@
+service: slack-one-liner
+frameworkVersion: "2"
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: 20201221
+  region: ap-northeast-1
+  environment:
+    SAMPLE: sample
+functions:
+  hello:
+    handler: handler.hello
+plugins:
+  - serverless-python-requirements
+custom:
+  pythonRequirements:
+    dockerizePip: true
