@@ -4,23 +4,29 @@ import traceback
 from io import StringIO
 from slack_sdk import WebClient
 from slack_sdk.signature import SignatureVerifier, Clock
-from os import environ
+import os
 from urllib.parse import urlencode
 
 
-SLACK_OAUTH_TOKEN = environ['SLACK_OAUTH_TOKEN']
-SLACK_SIGNING_SECRET = environ['SLACK_SIGNING_SECRET']
+SLACK_OAUTH_TOKEN = os.environ['SLACK_OAUTH_TOKEN']
+SLACK_SIGNING_SECRET = os.environ['SLACK_SIGNING_SECRET']
 
 def execute(statement: str) -> str:
     out = StringIO()
+
+    sys.stdout = out
+    environ = os.environ
     try:
-        sys.stdout = out
-        exec(statement)
+        # 実行プロセス上のglobals, localsを参照させないようにする
+        os.environ = dict()
+        exec(statement, dict(), dict())
+
         return out.getvalue()
     except Exception:
         return traceback.format_exc()
     finally:
         sys.stdout = sys.__stdout__
+        os.environ = environ
 
 
 def pyccho(user_id: str, channel_id: str, statement: str):
