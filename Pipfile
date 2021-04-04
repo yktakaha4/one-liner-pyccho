@@ -4,8 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+slack-sdk = "*"
 
 [dev-packages]
+black = "*"
 
 [requires]
 python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
+
+[scripts]
+lint = "black src/"
